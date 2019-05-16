@@ -106,11 +106,12 @@ data = dict(
         times=3,
         dataset=dict(
             type=dataset_type,
-            ann_file=[
-                data_root + 'VOC2007/ImageSets/Main/trainval.txt',
-                data_root + 'VOC2012/ImageSets/Main/trainval.txt'
+            ann_file=[data_root + 'VOC2007/ImageSets/Main/trainval.txt'
+#                data_root + 'VOC2007/ImageSets/Main/trainval.txt',
+#                data_root + 'VOC2012/ImageSets/Main/trainval.txt'
             ],
-            img_prefix=[data_root + 'VOC2007/', data_root + 'VOC2012/'],
+#            img_prefix=[data_root + 'VOC2007/', data_root + 'VOC2012/'],
+            img_prefix=[data_root + 'VOC2007/'],
             img_scale=(1000, 600),
             img_norm_cfg=img_norm_cfg,
             size_divisor=32,
@@ -141,7 +142,7 @@ data = dict(
         with_label=False,
         test_mode=True))
 # optimizer
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.0025, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(policy='step', step=[3])  # actual epoch = 3 * 3 = 9
@@ -150,8 +151,8 @@ checkpoint_config = dict(interval=1)
 log_config = dict(
     interval=50,
     hooks=[
-        dict(type='TextLoggerHook'),
-        # dict(type='TensorboardLoggerHook')
+        # dict(type='TextLoggerHook'),
+        dict(type='TensorboardLoggerHook')
     ])
 # yapf:enable
 # runtime settings
