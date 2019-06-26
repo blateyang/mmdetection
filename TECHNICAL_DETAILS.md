@@ -94,6 +94,6 @@ Supposing that the server has 8 GPUs, 8 processes will be started and each proce
 
 Each process keeps an isolated model, data loader, and optimizer.
 Model parameters are only synchronized once at the begining.
-After a forward and backward pass, gradients will be allreduced among all GPUs,
+After a forward and backward pass, gradients will be allreduced（分布式计算中的术语，是一种在每轮分布训练后同步结果，“达成共识”的操作，[相关参考资料](https://www.jianshu.com/p/a1bbeaad5224)） among all GPUs,
 and the optimizer will update model parameters.
 Since the gradients are allreduced, the model parameter stays the same for all processes after the iteration.
